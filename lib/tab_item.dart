@@ -25,9 +25,7 @@ const double ALPHA_ON = 1;
 const int ANIM_DURATION = 300;
 const Color PURPLE = Color(0xFF8c77ec);
 
-
 class _TabItemState extends State<TabItem> {
-
   double iconYAlign = ICON_ON;
   double textYAlign = TEXT_OFF;
   double iconAlpha = ALPHA_ON;
@@ -44,7 +42,7 @@ class _TabItemState extends State<TabItem> {
     _setIconTextAlpha();
   }
 
-  _setIconTextAlpha() {
+  void _setIconTextAlpha() {
     setState(() {
       iconYAlign = (widget.selected) ? ICON_OFF : ICON_ON;
       textYAlign = (widget.selected) ? TEXT_ON : TEXT_OFF;
@@ -62,7 +60,7 @@ class _TabItemState extends State<TabItem> {
             height: double.infinity,
             width: double.infinity,
             child: AnimatedAlign(
-                duration: Duration(milliseconds: ANIM_DURATION),
+                duration: const Duration(milliseconds: ANIM_DURATION),
                 alignment: Alignment(0, textYAlign),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -76,17 +74,17 @@ class _TabItemState extends State<TabItem> {
             height: double.infinity,
             width: double.infinity,
             child: AnimatedAlign(
-              duration: Duration(milliseconds: ANIM_DURATION),
+              duration: const Duration(milliseconds: ANIM_DURATION),
               curve: Curves.easeIn,
               alignment: Alignment(0, iconYAlign),
               child: AnimatedOpacity(
-                duration: Duration(milliseconds: ANIM_DURATION),
+                duration: const Duration(milliseconds: ANIM_DURATION),
                 opacity: iconAlpha,
                 child: IconButton(
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
-                  padding: EdgeInsets.all(0),
-                  alignment: Alignment(0, 0),
+                  padding: const EdgeInsets.all(0),
+                  alignment: const Alignment(0, 0),
                   icon: Icon(
                     widget.iconData,
                     color: PURPLE,
