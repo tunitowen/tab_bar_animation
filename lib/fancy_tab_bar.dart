@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'tab_item.dart';
 import 'package:vector_math/vector_math.dart' as vector;
+
+import 'tab_item.dart';
 
 class FancyTabBar extends StatefulWidget {
   @override
@@ -72,10 +73,12 @@ class _FancyTabBarState extends State<FancyTabBar>
       children: <Widget>[
         Container(
           height: 65,
-          margin: EdgeInsets.only(top: 45),
+          margin: const EdgeInsets.only(top: 45),
           decoration: BoxDecoration(color: Colors.white, boxShadow: [
             BoxShadow(
-                color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
+                color: Colors.black12,
+                offset: const Offset(0, -1),
+                blurRadius: 8)
           ]),
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -84,7 +87,7 @@ class _FancyTabBarState extends State<FancyTabBar>
               TabItem(
                   selected: currentSelected == 0,
                   iconData: Icons.home,
-                  title: "HOME",
+                  title: 'HOME',
                   callbackFunction: () {
                     setState(() {
                       nextIcon = Icons.home;
@@ -95,7 +98,7 @@ class _FancyTabBarState extends State<FancyTabBar>
               TabItem(
                   selected: currentSelected == 1,
                   iconData: Icons.search,
-                  title: "SEARCH",
+                  title: 'SEARCH',
                   callbackFunction: () {
                     setState(() {
                       nextIcon = Icons.search;
@@ -106,7 +109,7 @@ class _FancyTabBarState extends State<FancyTabBar>
               TabItem(
                   selected: currentSelected == 2,
                   iconData: Icons.person,
-                  title: "USER",
+                  title: 'USER',
                   callbackFunction: () {
                     setState(() {
                       nextIcon = Icons.person;
@@ -141,8 +144,11 @@ class _FancyTabBarState extends State<FancyTabBar>
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       shape: BoxShape.circle,
-                                      boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)])
-                              ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black12,
+                                            blurRadius: 8)
+                                      ])),
                             ),
                           )),
                     ),
@@ -185,7 +191,7 @@ class _FancyTabBarState extends State<FancyTabBar>
     );
   }
 
-  _initAnimationAndStart(double from, double to) {
+  void _initAnimationAndStart(double from, double to) {
     _positionTween.begin = from;
     _positionTween.end = to;
 
@@ -199,7 +205,7 @@ class _FancyTabBarState extends State<FancyTabBar>
 class HalfClipper extends CustomClipper<Rect> {
   @override
   Rect getClip(Size size) {
-    final rect = Rect.fromLTWH(0, 0, size.width, size.height / 2);
+    final Rect rect = Rect.fromLTWH(0, 0, size.width, size.height / 2);
     return rect;
   }
 
@@ -217,7 +223,7 @@ class HalfPainter extends CustomPainter {
     final Rect afterRect =
         Rect.fromLTWH(size.width - 10, (size.height / 2) - 10, 10, 10);
 
-    final path = Path();
+    final Path path = Path();
     path.arcTo(beforeRect, vector.radians(0), vector.radians(90), false);
     path.lineTo(20, size.height / 2);
     path.arcTo(largeRect, vector.radians(0), -vector.radians(180), false);
